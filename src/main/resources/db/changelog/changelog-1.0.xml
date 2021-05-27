@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2021-05-27 add account" author="Toomas Prooso">
+        <createTable tableName="create_account">
+            <column name="account_number" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="owner_name" type="text"/>
+            <column name="address" type="text"/>
+            <column name="balance" type="numeric"/>
+            <column name="locked" type="boolean"/>
+        </createTable>
+
+        <createTable tableName="transaction_history">
+        <column name="transfer_id" type="int" autoIncrement="true">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="from_account" type="text"/>
+        <column name="to_account" type="text"/>
+        <column name="transfer" type="numeric"/>
+        <column name="deduction" type="numeric"/>
+        <column name="time" type="timestamp"/>
+
+        </createTable>
+
+        <createTable tableName="bank_login">
+            <column name="username" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="password" type="text"/>
+
+
+        </createTable>
+
+    </changeSet>
+
+
+</databaseChangeLog>
