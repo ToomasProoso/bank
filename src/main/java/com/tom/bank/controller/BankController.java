@@ -2,6 +2,7 @@ package com.tom.bank.controller;
 
 
 import com.tom.bank.objects.CreateAccount;
+import com.tom.bank.objects.LockAccount;
 import com.tom.bank.objects.TransactionHistory;
 import com.tom.bank.objects.TransferRequest;
 import com.tom.bank.service.BankService;
@@ -73,21 +74,21 @@ public class BankController {
         return bankService.searchHistory(fromAccount);
     }
 
-    //Ei toimi veel
+    //works on postman: http://localhost:9090/bank/deleteAllHistory
     @DeleteMapping("bank/deleteAllHistory")
     public void deleteAllHistory() {
         bankService.deleteAllHistory();
     }
 
-//    @PutMapping("/blockAccount")
-//    public String blockAccount(@RequestBody AccountRequest accountRequest) {
-//        bankService.blockAccount(accountRequest);
-//        return accountRequest.getAccountNumber() + " is blocked.";
-//    }
-//
-//    @PutMapping("/unBlockAccount")
-//    public String unBlockAccount(@RequestBody AccountRequest accountRequest) {
-//        bankService.unBlockAccount(accountRequest);
-//        return accountRequest.getAccountNumber() + " is unblocked.";
+    @PutMapping("bank/blockAccount")
+    public String blockAccount(@RequestBody LockAccount lockAccount) {
+        bankService.blockAccount(lockAccount);
+        return lockAccount.getAccountNumber() + " is blocked.";
+    }
 
+    @PutMapping("bank/unblockAccount")
+    public String unBlockAccount(@RequestBody LockAccount lockAccount) {
+        bankService.unBlockAccount(lockAccount);
+        return lockAccount.getAccountNumber() + " is unblocked.";
+    }
 }

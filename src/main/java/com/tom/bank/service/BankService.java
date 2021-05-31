@@ -2,6 +2,7 @@ package com.tom.bank.service;
 
 import com.tom.bank.bank.exception.BankException;
 import com.tom.bank.objects.CreateAccount;
+import com.tom.bank.objects.LockAccount;
 import com.tom.bank.objects.TransactionHistory;
 import com.tom.bank.objects.TransferRequest;
 import com.tom.bank.repository.BankHibernateRepository;
@@ -117,5 +118,21 @@ public class BankService {
 
     public void deleteAllHistory() {
        transactionRepository.deleteAll();
+    }
+
+
+    public void blockAccount(LockAccount lockAccount) {
+        CreateAccount account = bankRepository.getByAccountNumber(lockAccount.getAccountNumber());
+        Boolean lock = lockAccount.isLocked();
+        account.setLocked(lock);
+        bankRepository.save(account);
+
+    }
+
+    public void unBlockAccount(LockAccount lockAccount) {
+        CreateAccount account = bankRepository.getByAccountNumber(lockAccount.getAccountNumber());
+        Boolean unlock = lockAccount.isLocked();
+        account.setLocked(unlock);
+        bankRepository.save(account);
     }
 }
