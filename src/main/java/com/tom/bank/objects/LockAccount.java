@@ -1,7 +1,12 @@
 package com.tom.bank.objects;
 
-public class LockAccount {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "create_account")
+public class LockAccount {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private boolean locked;
     private String accountNumber;
 

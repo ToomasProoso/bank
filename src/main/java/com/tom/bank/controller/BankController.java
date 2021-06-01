@@ -33,7 +33,7 @@ public class BankController {
         return bankService.accountInfo();
     }
 
-    //http://localhost:9090/bank?accountNumber=E
+    //http://localhost:9090/bank?accountNumber=EE666
     @GetMapping("bank")
     private List<CreateAccount> getBalance(@RequestParam("accountNumber") String accountNumber) {
         return bankService.getBalance(accountNumber);
@@ -51,6 +51,11 @@ public class BankController {
     private String deposit(@RequestBody CreateAccount deposit) {
         return bankService.deposit(deposit);
     }
+
+//    @PutMapping("bank/deposit1") //http://localhost:9090/bank/deposit1/EE222/500
+//    private Double deposit1(@PathVariable ("accountNumber") String accountNumber, @PathVariable("deposit") double deposit) {
+//        return bankService.deposit1(accountNumber, deposit);
+//    }
 
     @PutMapping("bank/withdraw")
     private String withdraw(@RequestBody CreateAccount withdraw) {

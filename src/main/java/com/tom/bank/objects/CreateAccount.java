@@ -36,15 +36,11 @@ public class CreateAccount {
         this.address = address;
     }
 
-    public Double getBalance() {
-        return balance;
-    }
+    public Double getBalance() { return balance;}
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
+    public void setBalance(Double balance) { this.balance = balance;}
 
-    public boolean isLocked() {
+    public Boolean isLocked() {
         return locked;
     }
 
